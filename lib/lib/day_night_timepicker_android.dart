@@ -50,7 +50,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
     final ltrMode =
         timeState.widget.ltrMode ? TextDirection.ltr : TextDirection.rtl;
 
-	final hideButtons = timeState.widget.hideButtons;
+    final hideButtons = timeState.widget.hideButtons;
 
     Orientation currentOrientation = MediaQuery.of(context).orientation;
 
@@ -86,9 +86,9 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                               value: hourValue.toString().padLeft(2, '0'),
                               isSelected: timeState.hourIsSelected,
                             ),
-                            const DisplayValue(
-                              value: ":",
-                            ),
+                            // const DisplayValue(
+                            //   value: ":",
+                            // ),
                             DisplayValue(
                               onTap: timeState.widget.disableMinute!
                                   ? null
@@ -119,7 +119,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                         activeColor: color,
                         inactiveColor: color.withAlpha(55),
                       ),
-					  if (!hideButtons) const ActionButtons(),
+                      if (!hideButtons) const ActionButtons(),
                     ],
                   ),
                 ),
