@@ -86,9 +86,9 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                               value: hourValue.toString().padLeft(2, '0'),
                               isSelected: timeState.hourIsSelected,
                             ),
-                            // const DisplayValue(
-                            //   value: ":",
-                            // ),
+                            const DisplayValue(
+                              value: ":",
+                            ),
                             DisplayValue(
                               onTap: timeState.widget.disableMinute!
                                   ? null
