@@ -99,7 +99,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                             children: <Widget>[
                               SizedBox(
                                 width: 90,
-                                height: 100,
+                                height: 150,
                                 child: TextField(
                                   maxLength: 2,
                                   focusNode: hourFocus,
@@ -155,7 +155,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                               ),
                               SizedBox(
                                   width: 30,
-                                  height: 120,
+                                  height: 150,
                                   child: IgnorePointer(
                                     ignoring: true,
                                     child: TextField(
@@ -189,7 +189,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
 
                               SizedBox(
                                 width: 90,
-                                height: 120,
+                                height: 150,
                                 child: TextField(
                                   maxLength: 2,
                                   keyboardType: TextInputType.number,
