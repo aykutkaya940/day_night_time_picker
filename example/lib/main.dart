@@ -98,7 +98,7 @@ class _HomeState extends State<Home> {
                   iosStylePicker: iosStyle,
                   minHour: 9,
                   maxHour: 21,
-                  is24HrFormat: false,
+                  is24HrFormat: true,
                 ),
                 Text(
                   "IOS Style",

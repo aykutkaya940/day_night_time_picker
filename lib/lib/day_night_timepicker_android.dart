@@ -69,7 +69,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
     final _commonTimeStyles = Theme.of(context)
         .textTheme
         .headline2!
-        .copyWith(fontSize: 6, fontWeight: FontWeight.bold, color: color1);
+        .copyWith(fontSize: 62, fontWeight: FontWeight.bold, color: color1);
 
     final unselectedColor = timeState.widget.unselectedColor ?? Colors.grey;
 
@@ -88,7 +88,6 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                 WrapperContainer(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       //  const AmPm(),
                       Expanded(
@@ -99,7 +98,6 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                               width: 90,
                               child: TextField(
                                 maxLength: 2,
-                                focusNode: hourFocus,
                                 controller: hourCtrl,
                                 onTap: () {
                                   setState(() {
