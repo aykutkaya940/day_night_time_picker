@@ -69,7 +69,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
     final _commonTimeStyles = Theme.of(context)
         .textTheme
         .headline2!
-        .copyWith(fontSize: 62, fontWeight: FontWeight.bold, color: color1);
+        .copyWith(fontSize: 60, fontWeight: FontWeight.bold, color: color1);
 
     final unselectedColor = timeState.widget.unselectedColor ?? Colors.grey;
 
