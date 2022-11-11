@@ -103,8 +103,8 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                 controller: hourCtrl,
                                 onTap: () {
                                   setState(() {
-                                    minCtrl.clear();
-                                    hourCtrl.clear();
+                                    hourCtrl.text = "";
+                                    minCtrl.text = "";
                                     timeState.hourIsSelected = true;
                                     timeState.widget.disableHour!
                                         ? null
@@ -112,6 +112,8 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                             timeState
                                                 .onHourIsSelectedChange(true);
                                           };
+                                    hourCtrl.text = "";
+                                    minCtrl.text = "";
                                   });
                                 },
                                 onEditingComplete: () {
@@ -195,9 +197,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                 controller: minCtrl,
                                 onTap: () {
                                   setState(() {
-                                    minCtrl.clear();
-                                    hourCtrl.clear();
-                                    minCtrl.text = "";
+                                    hourCtrl.text = "";
                                     timeState.hourIsSelected = false;
                                     timeState.widget.disableMinute!
                                         ? null
@@ -205,11 +205,12 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                             timeState
                                                 .onHourIsSelectedChange(false);
                                           };
-                                    minCtrl.clear();
+                                    minCtrl.text = "";
                                   });
                                 },
                                 onEditingComplete: () {
                                   setState(() {
+                                    hourCtrl.text = "";
                                     minCtrl.text.isNotEmpty &&
                                             int.parse(minCtrl.value.text) >=
                                                 0 &&
