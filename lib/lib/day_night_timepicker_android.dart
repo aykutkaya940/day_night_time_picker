@@ -104,6 +104,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                 onTap: () {
                                   setState(() {
                                     minCtrl.clear();
+                                    hourCtrl.clear();
                                     timeState.hourIsSelected = true;
                                     timeState.widget.disableHour!
                                         ? null
