@@ -64,6 +64,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     Navigator.of(context).push(
                       showPicker(
+                        is24HrFormat: true,
                         context: context,
                         value: _time,
                         onChange: onTimeChanged,
