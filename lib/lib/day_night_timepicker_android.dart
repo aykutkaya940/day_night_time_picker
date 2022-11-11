@@ -92,58 +92,73 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                     children: <Widget>[
                       const AmPm(),
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: SizedBox(
-                            height: 90,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 90,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(
+                              width: 90,
+                              child: TextField(
+                                maxLength: 2,
+                                focusNode: hourFocus,
+                                controller: hourCtrl,
+                                onTap: () {
+                                  setState(() {
+                                    timeState.hourIsSelected = true;
+                                    timeState.widget.disableHour!
+                                        ? null
+                                        : () {
+                                            timeState
+                                                .onHourIsSelectedChange(true);
+                                          };
+                                  });
+                                },
+                                onEditingComplete: () {
+                                  setState(() {
+                                    hourCtrl.value.text.isNotEmpty &&
+                                            int.parse(hourCtrl.value.text) >=
+                                                0 &&
+                                            int.parse(hourCtrl.value.text) <= 23
+                                        ? timeState.onHourChange(
+                                            double.parse(hourCtrl.value.text))
+                                        : timeState.onHourChange(
+                                            DateTime.now().hour.toDouble());
+                                    hourCtrl.clear();
+                                  });
+                                },
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                style: _commonTimeStyles.copyWith(
+                                    color: hourFocus.hasFocus
+                                        ? color
+                                        : unselectedColor),
+                                decoration: InputDecoration(
+                                    counterText: "",
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintStyle: _commonTimeStyles.copyWith(
+                                        color: timeState.hourIsSelected
+                                            ? color
+                                            : unselectedColor),
+                                    hintText:
+                                        hourValue.toString().padLeft(2, '0')),
+                              ),
+                            ),
+                            SizedBox(
+                                width: 30,
+                                child: IgnorePointer(
+                                  ignoring: true,
                                   child: TextField(
-                                    maxLength: 2,
-                                    focusNode: hourFocus,
-                                    controller: hourCtrl,
-                                    onTap: () {
-                                      setState(() {
-                                        timeState.hourIsSelected = true;
-                                        timeState.widget.disableHour!
-                                            ? null
-                                            : () {
-                                                timeState
-                                                    .onHourIsSelectedChange(
-                                                        true);
-                                              };
-                                      });
-                                    },
-                                    onEditingComplete: () {
-                                      setState(() {
-                                        hourCtrl.value.text.isNotEmpty &&
-                                                int.parse(
-                                                        hourCtrl.value.text) >=
-                                                    0 &&
-                                                int.parse(
-                                                        hourCtrl.value.text) <=
-                                                    23
-                                            ? timeState.onHourChange(
-                                                double.parse(
-                                                    hourCtrl.value.text))
-                                            : timeState.onHourChange(
-                                                DateTime.now().hour.toDouble());
-                                        hourCtrl.clear();
-                                      });
-                                    },
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
                                     style: _commonTimeStyles.copyWith(
                                         color: hourFocus.hasFocus
                                             ? color
                                             : unselectedColor),
                                     decoration: InputDecoration(
-                                        counterText: "",
                                         enabledBorder:
                                             const UnderlineInputBorder(
                                           borderSide: BorderSide.none,
@@ -153,125 +168,88 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                           borderSide: BorderSide.none,
                                         ),
                                         hintStyle: _commonTimeStyles.copyWith(
-                                            color: timeState.hourIsSelected
-                                                ? color
-                                                : unselectedColor),
-                                        hintText: hourValue
-                                            .toString()
-                                            .padLeft(2, '0')),
+                                            color: unselectedColor),
+                                        hintText: ":"),
                                   ),
-                                ),
-                                SizedBox(
-                                    width: 30,
-                                    child: IgnorePointer(
-                                      ignoring: true,
-                                      child: TextField(
-                                        style: _commonTimeStyles.copyWith(
-                                            color: hourFocus.hasFocus
-                                                ? color
-                                                : unselectedColor),
-                                        decoration: InputDecoration(
-                                            enabledBorder:
-                                                const UnderlineInputBorder(
-                                              borderSide: BorderSide.none,
-                                            ),
-                                            focusedBorder:
-                                                const UnderlineInputBorder(
-                                              borderSide: BorderSide.none,
-                                            ),
-                                            hintStyle:
-                                                _commonTimeStyles.copyWith(
-                                                    color: unselectedColor),
-                                            hintText: ":"),
-                                      ),
-                                    )),
-                                // DisplayValue(
-                                //   onTap: timeState.widget.disableHour!
-                                //       ? null
-                                //       : () {
-                                //           timeState.onHourIsSelectedChange(true);
-                                //         },
-                                //   value: hourValue.toString().padLeft(2, '0'),
-                                //   isSelected: timeState.hourIsSelected,
-                                // ),
+                                )),
+                            // DisplayValue(
+                            //   onTap: timeState.widget.disableHour!
+                            //       ? null
+                            //       : () {
+                            //           timeState.onHourIsSelectedChange(true);
+                            //         },
+                            //   value: hourValue.toString().padLeft(2, '0'),
+                            //   isSelected: timeState.hourIsSelected,
+                            // ),
 
-                                SizedBox(
-                                  width: 90,
-                                  child: TextField(
-                                    maxLength: 2,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    controller: minCtrl,
-                                    onTap: () {
-                                      setState(() {
-                                        minCtrl.text = "";
-                                        timeState.hourIsSelected = false;
-                                        timeState.widget.disableMinute!
-                                            ? null
-                                            : () {
-                                                timeState
-                                                    .onHourIsSelectedChange(
-                                                        false);
-                                              };
-                                        minCtrl.clear();
-                                      });
-                                    },
-                                    onEditingComplete: () {
-                                      setState(() {
-                                        minCtrl.text.isNotEmpty &&
-                                                int.parse(minCtrl.value.text) >=
-                                                    0 &&
-                                                int.parse(minCtrl.value.text) <=
-                                                    59
-                                            ? timeState.onMinuteChange(
-                                                double.parse(
-                                                    minCtrl.value.text))
-                                            : timeState.onMinuteChange(
-                                                DateTime.now()
-                                                    .minute
-                                                    .toDouble());
-                                        minCtrl.text = "";
-                                      });
-                                    },
-                                    style: _commonTimeStyles,
-                                    decoration: InputDecoration(
-                                        counterText: "",
-                                        enabledBorder:
-                                            const UnderlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                        ),
-                                        focusedBorder:
-                                            const UnderlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                        ),
-                                        hintStyle: _commonTimeStyles.copyWith(
-                                            color: timeState.hourIsSelected
-                                                ? unselectedColor
-                                                : color),
-                                        hintText: timeState.time.minute
-                                            .toString()
-                                            .padLeft(2, '0')),
-                                  ),
-                                ),
-                                // const DisplayValue(
-                                //   value: ":",
-                                // ),
-                                // DisplayValue(
-                                //   onTap: timeState.widget.disableMinute!
-                                //       ? null
-                                //       : () {
-                                //           timeState.onHourIsSelectedChange(false);
-                                //         },
-                                //   value: timeState.time.minute
-                                //       .toString()
-                                //       .padLeft(2, '0'),
-                                //   isSelected: !timeState.hourIsSelected,
-                                // ),
-                              ],
+                            SizedBox(
+                              width: 90,
+                              child: TextField(
+                                maxLength: 2,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                controller: minCtrl,
+                                onTap: () {
+                                  setState(() {
+                                    minCtrl.text = "";
+                                    timeState.hourIsSelected = false;
+                                    timeState.widget.disableMinute!
+                                        ? null
+                                        : () {
+                                            timeState
+                                                .onHourIsSelectedChange(false);
+                                          };
+                                    minCtrl.clear();
+                                  });
+                                },
+                                onEditingComplete: () {
+                                  setState(() {
+                                    minCtrl.text.isNotEmpty &&
+                                            int.parse(minCtrl.value.text) >=
+                                                0 &&
+                                            int.parse(minCtrl.value.text) <= 59
+                                        ? timeState.onMinuteChange(
+                                            double.parse(minCtrl.value.text))
+                                        : timeState.onMinuteChange(
+                                            DateTime.now().minute.toDouble());
+                                    minCtrl.text = "";
+                                  });
+                                },
+                                style: _commonTimeStyles,
+                                decoration: InputDecoration(
+                                    counterText: "",
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintStyle: _commonTimeStyles.copyWith(
+                                        color: timeState.hourIsSelected
+                                            ? unselectedColor
+                                            : color),
+                                    hintText: timeState.time.minute
+                                        .toString()
+                                        .padLeft(2, '0')),
+                              ),
                             ),
-                          ),
+                            // const DisplayValue(
+                            //   value: ":",
+                            // ),
+                            // DisplayValue(
+                            //   onTap: timeState.widget.disableMinute!
+                            //       ? null
+                            //       : () {
+                            //           timeState.onHourIsSelectedChange(false);
+                            //         },
+                            //   value: timeState.time.minute
+                            //       .toString()
+                            //       .padLeft(2, '0'),
+                            //   isSelected: !timeState.hourIsSelected,
+                            // ),
+                          ],
                         ),
                       ),
                       Slider(
