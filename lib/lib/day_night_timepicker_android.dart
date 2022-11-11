@@ -174,7 +174,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                           ),
                                           hintStyle: _commonTimeStyles.copyWith(
                                               color: unselectedColor),
-                                          hintText: ";"),
+                                          hintText: ":"),
                                     ),
                                   )),
                               // DisplayValue(
