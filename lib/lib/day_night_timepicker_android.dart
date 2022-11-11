@@ -89,7 +89,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      //  const AmPm(),
+                      const AmPm(),
                       Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -97,10 +97,13 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                             SizedBox(
                               width: 90,
                               child: TextField(
+                                showCursor: true,
+                                cursorColor: color1,
                                 maxLength: 2,
                                 controller: hourCtrl,
                                 onTap: () {
                                   setState(() {
+                                    minCtrl.clear();
                                     timeState.hourIsSelected = true;
                                     timeState.widget.disableHour!
                                         ? null
@@ -191,6 +194,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                 controller: minCtrl,
                                 onTap: () {
                                   setState(() {
+                                    hourCtrl.clear();
                                     minCtrl.text = "";
                                     timeState.hourIsSelected = false;
                                     timeState.widget.disableMinute!
