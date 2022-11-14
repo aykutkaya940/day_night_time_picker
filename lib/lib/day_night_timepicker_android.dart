@@ -72,7 +72,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
         .copyWith(fontSize: 62, fontWeight: FontWeight.bold, color: color1);
 
     final unselectedColor = timeState.widget.unselectedColor ?? Colors.grey;
-
+    void checkNumber(String num) {}
     return Center(
       child: SingleChildScrollView(
         physics: currentOrientation == Orientation.portrait
@@ -190,6 +190,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                               width: 90,
                               child: TextField(
                                 maxLength: 2,
+                                cursorColor: color1,
                                 keyboardType: TextInputType.number,
                                 inputFormatters: <TextInputFormatter>[
                                   FilteringTextInputFormatter.digitsOnly
