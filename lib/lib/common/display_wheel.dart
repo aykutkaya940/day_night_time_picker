@@ -38,7 +38,7 @@ class DisplayWheel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final timeState = TimeModelBinding.of(context);
-    final _commonTimeStyles = Theme.of(context).textTheme.headline2!.copyWith(
+    final _commonTimeStyles = Theme.of(context).textTheme.headlineMedium!.copyWith(
           fontSize: 30,
         );
 

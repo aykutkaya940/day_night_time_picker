@@ -49,12 +49,12 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 Text(
                   "Popup Picker Style",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 Text(
                   _time.format(context),
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 const SizedBox(height: 10),
                 TextButton(
@@ -87,7 +87,7 @@ class _HomeState extends State<Home> {
                 const SizedBox(height: 10),
                 Text(
                   "Inline Picker Style",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 // Render inline widget
                 createInlinePicker(

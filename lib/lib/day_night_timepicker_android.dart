@@ -68,7 +68,7 @@ class DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
     Orientation currentOrientation = MediaQuery.of(context).orientation;
     final _commonTimeStyles = Theme.of(context)
         .textTheme
-        .headline2!
+        .headlineMedium!
         .copyWith(fontSize: 62, fontWeight: FontWeight.bold, color: color1);
 
     final unselectedColor = timeState.widget.unselectedColor ?? Colors.grey;
